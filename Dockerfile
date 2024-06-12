@@ -1,4 +1,4 @@
-FROM armv8/ros:humble
+FROM arm64v8/ros:humble
 
 # install nav2 dependencies
 #RUN apt-get update && apt-get install -y --no-install-recommends \
