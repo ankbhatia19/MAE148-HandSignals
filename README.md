@@ -1,7 +1,5 @@
 # ROS2: Containerized
 
-Created for and primarily used by Triton Robotics, a UCSD competitive robotics team.
-
 - [ROS2: Containerized](#ros2-containerized)
   - [Features](#features)
   - [Prerequisites](#prerequisites)
