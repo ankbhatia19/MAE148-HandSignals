@@ -1,4 +1,4 @@
-NAME = ros2
+NAME = hand-signals
 DOCKERFILE = Dockerfile
 
 # The following variables are used to control the automatic generation of the docker container
