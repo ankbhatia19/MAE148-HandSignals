@@ -1,19 +1,17 @@
-# ROS2: Containerized
+# MAE148 / Spring 2024 / Team 03
 
-- [ROS2: Containerized](#ros2-containerized)
-  - [Features](#features)
-  - [Prerequisites](#prerequisites)
-  - [Setup](#setup)
-  - [Usage](#usage)
-  - [Workspaces](#workspaces)
-  - [Package Installation](#package-installation)
-  - [Issues](#issues)
+### Project
+Our project had two goals:
+1. Control an RC car type vehicle with hand signals.
+2. Detect construction pallets and pick them up with a forklift-esque mechanism.
+
+This repository contains all code necessary to achieve these goals.
 
 ### Features
 
 * Fully modularized: Can be installed onto any system with the appropriate prerequisites
-* Includes all dependencies required for base ROS2 development using [ROS2 Foxy Fitzroy](https://docs.ros.org/en/foxy/Releases/Release-Foxy-Fitzroy.html)
-* Automated, one line installation, powered by Docker
+* Includes all dependencies required for ROS2 development and testing using ROS2 Humble
+* Automated, one line installation and setup, powered by Docker
 * Ease of accessibility, powered by a custom Makefile
 
 ### Prerequisites
@@ -35,7 +33,7 @@
 1. Clone this repo.
 
 ```sh
-git clone https://github.com/ankbhatia19/ROS2-Containerized.git
+git clone https://github.com/ankbhatia19/MAE148-HandSignals.git
 ```
 
 2. `cd` into the newly created folder. Run `make`.
@@ -53,30 +51,22 @@ git clone https://github.com/ankbhatia19/ROS2-Containerized.git
 
 Additional commands can be seen by running `make help`.
 
-### Workspaces
+### Running Project Nodes
+* Launch the container using `make`. Navigate to `workspaces/148_ws` once inside the container.
+* Source the necessary overlays using:
+```sh
+. /opt/ros/humble/setup.bash
+. install/setup.bash
+```
+* Build the project:
+```sh
+colcon build
+```
+* And finally launch:
+```sh
+ros2 launch handsigs_bringup handsigs.launch.py
+```
 
-* All source code and ROS2 workspaces should be stored inside the `workspaces` folder.
-  * This folder is synced across your host system and the ROS2 container.
-  * This allows you to edit your code using your host OS and preferred IDE, and prevents code from being deleted when the container stops running.
-* See [this tutorial](https://docs.ros.org/en/foxy/Tutorials/Workspace/Creating-A-Workspace.html) for more information on workspace management.
+### Contact
 
-### Package Installation
-
-Since container based systems do not remember installations after the container stops running, it is necessary to add additional installations to the Dockerfile itself.
-
-* Additional packages can be added to the Dockerfile by adding the package to the user specific packages section.
-
-  ```bash
-  # user specific packages
-  RUN apt-get update && apt-get install -y --no-install-recommends \
-      # package-name-here \
-      && rm -rf /var/lib/apt/lists/*
-  ```
-* After updating the Dockerfile, run `make dockerfile` to install added packages and regenerate the container image.
-* Restart the container by running `make clean`, then `make`.
-
-### Issues
-
-Issues can be reported using the corresponding GitHub tab, or by contacting the developer using Discord at `zesty#9999`
-
-Tested on: Ubuntu 18.04, Ubuntu 21.04, Fedora 35, and Arch Linux
+For questions about this project or otherwise, contact the developers on Discord using Discord ID `Waycey`.
